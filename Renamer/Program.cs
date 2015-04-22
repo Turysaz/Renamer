@@ -64,8 +64,9 @@ namespace Renamer
                     }
                 }
             }
-            var dirs = Directory.GetDirectories(rootdir);
-            foreach (var dir in dirs.Where(d=>!d.StartsWith("."))
+            var di = new DirectoryInfo(rootdir);
+            var dirs = di.EnumerateDirectories().Where(d => !d.Name.StartsWith(".")).Select(d=>d.FullName);
+            foreach (var dir in dirs)
             {
                 Rename(dir, replace, target);
                 try
