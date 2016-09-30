@@ -10,9 +10,10 @@ namespace Renamer
     {
         static void Main(string[] args)
         {
-
-            if (args == null || args[0] == "-?")
+            if (args.Length == 0 || args[0] == "-?")
+            {
                 PrintHelp();
+            }
             var directory = Environment.CurrentDirectory;
             var replace = args[0];
             var target = args[1];
@@ -35,6 +36,7 @@ namespace Renamer
         {
             Console.WriteLine("Usage: [--rootpath pathToSolution] stringToReplace targetString");
             Console.WriteLine(" -? for help");
+            Environment.Exit(0);
         }
 
         public static void Rename(string rootdir, string replace, string target)
